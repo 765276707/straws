@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <!--
+            开启驼峰命名规则。
+        -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <!--
+            配置默认的执行器。
+            SIMPLE 就是普通的执行器；
+            REUSE 执行器会重用预处理语句（PreparedStatement）；
+            BATCH 执行器不仅重用语句还会执行批量更新。
+        -->
+        <setting name="defaultExecutorType" value="SIMPLE" />
+        <!--
+            全局性地开启所有映射器配置文件中已配置的任何缓存。
+        -->
+        <setting name="cacheEnabled" value="true" />
+        <!--
+            延迟加载的全局开关。
+            当开启时，所有关联对象都会延迟加载。
+        -->
+        <setting name="lazyLoadingEnabled" value="false" />
+        <!--
+            开启时，任一方法的调用都会加载该对象的所有延迟加载属性。
+            否则，每个延迟加载属性会按需加载
+        -->
+        <setting name="aggressiveLazyLoading" value="false" />
+        <!--
+            当没有为参数指定特定的 JDBC 类型时，空值的默认 JDBC 类型。
+            NULL、VARCHAR 或 OTHER
+        -->
+        <setting name="jdbcTypeForNull" value="NULL" />
+        <!--
+            指定 MyBatis 所用日志的具体实现，未指定时将自动查找。
+            SLF4J | LOG4J | LOG4J2 | JDK_LOGGING | COMMONS_LOGGING | STDOUT_LOGGING | NO_LOGGING
+        -->
+        <setting name="logImpl" value="LOG4J2"/>
+    </settings>
+
+</configuration>

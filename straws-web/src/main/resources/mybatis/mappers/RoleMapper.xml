@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.Role">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <select id="selectRolesByUserName" resultType="java.lang.String">
+    select r.role_name
+    from sys_role r
+        left join sys_user_role ur on r.id = ur.role_id
+        left join sys_user u on ur.user_id = u.id
+    where
+        u.username = #{username}
+  </select>
+
+</mapper>

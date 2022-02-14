@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.LoginLogMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.LoginLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="login_user" jdbcType="VARCHAR" property="loginUser" />
+    <result column="login_mode" jdbcType="VARCHAR" property="loginMode" />
+    <result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+    <result column="login_ip" jdbcType="VARCHAR" property="loginIp" />
+    <result column="login_os" jdbcType="VARCHAR" property="loginOs" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <!--
+        引入统一配置
+    -->
+    <properties resource="mybatis-settings.properties"/>
+
+    <!--
+        主要配置
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!--
+            集成 Tk.Mybatis
+        -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+            <property name="caseSensitive" value="false"/>
+        </plugin>
+
+
+        <!-- 不生成注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+
+        <!--
+            数据库链接
+            WARN : java项目中使用org.mybatis.generator生成mysql数据库实体时，
+                 由于mysql数据库中存在多个库，如果库中出现重复表时，会出现生成的实
+                 体代码出现重复问题，原因是数据库生成实体时会扫描所有的库.
+            解决方案：connectionURL添加 &nullCatalogMeansCurrent=true
+        -->
+        <jdbcConnection
+                driverClass="${db.driverClass}"
+                connectionURL="${db.connectionUrl}"
+                userId="${db.userId}"
+                password="${db.password}">
+        </jdbcConnection>
+
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!-- 指定javaBean的生成位置 -->
+        <javaModelGenerator
+                targetPackage="${entity.package}"
+                targetProject="${entity.project}">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!-- 指定sql映射文件的生成位置 -->
+        <sqlMapGenerator
+                targetPackage="${mapper.sql.package}"
+                targetProject="${mapper.sql.project}">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!-- 指定dao接口生成的位置 mapper接口 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="${mapper.interface.package}"
+                             targetProject="${mapper.interface.project}">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+
+        <!--
+            需要逆向的表
+        -->
+<!--        <table tableName="sys_datasource" domainObjectName="Datasource"/>-->
+<!--        <table tableName="sys_migrate" domainObjectName="Migrate"/>-->
+<!--        <table tableName="sys_migrate_detail" domainObjectName="MigrateDetail"/>-->
+<!--        <table tableName="sys_script" domainObjectName="Script"/>-->
+<!--        <table tableName="sys_task" domainObjectName="Task"/>-->
+<!--        <table tableName="sys_task_log" domainObjectName="TaskLog"/>-->
+<!--        <table tableName="sys_dict" domainObjectName="Dict"/>-->
+<!--        <table tableName="sys_user" domainObjectName="User"/>-->
+<!--        <table tableName="sys_role" domainObjectName="Role"/>-->
+<!--        <table tableName="sys_user_role" domainObjectName="UserRole"/>-->
+<!--        <table tableName="sys_config" domainObjectName="Config"/>-->
+<!--        <table tableName="sys_oplog" domainObjectName="Oplog"/>-->
+        <table tableName="sys_login_log" domainObjectName="LoginLog"/>
+
+
+    </context>
+</generatorConfiguration>

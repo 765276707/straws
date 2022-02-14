@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.ConfigMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.Config">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="force_update_password" jdbcType="BIT" property="forceUpdatePassword" />
+    <result column="force_update_interval" jdbcType="INTEGER" property="forceUpdateInterval" />
+    <result column="enc_dspwd_in_db" jdbcType="BIT" property="encDspwdInDb" />
+  </resultMap>
+</mapper>

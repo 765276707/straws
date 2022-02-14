@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.MigrateDetailMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.MigrateDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="migrate_id" jdbcType="BIGINT" property="migrateId" />
+    <result column="origin_table_name" jdbcType="VARCHAR" property="originTableName" />
+    <result column="target_table_name" jdbcType="VARCHAR" property="targetTableName" />
+    <result column="is_create_table" jdbcType="BIT" property="isCreateTable" />
+    <result column="transformers" jdbcType="VARCHAR" property="transformers" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="origin_table_select_sql" jdbcType="LONGVARCHAR" property="originTableSelectSql" />
+    <result column="target_table_insert_sql" jdbcType="LONGVARCHAR" property="targetTableInsertSql" />
+    <result column="target_table_create_sql" jdbcType="LONGVARCHAR" property="targetTableCreateSql" />
+  </resultMap>
+
+  <select id="checkExistTableName" resultType="java.lang.Integer">
+    select count(*)
+    from sys_migrate_detail
+    where
+        (
+        origin_table_name = #{originTableName}
+        or
+        target_table_name = #{targetTableName}
+        )
+        and migrate_id = #{migrateId}
+        <if test="excludeId != null">
+            and id <![CDATA[ <> ]]> #{excludeId}
+        </if>
+  </select>
+
+  <insert id="insertBatch">
+    <if test="details!=null and details.size()&gt;0">
+        insert into sys_migrate_detail(migrate_id, origin_table_name, target_table_name, is_create_table, create_time, update_time ) values
+        <foreach collection="details" index="index" item="item" separator=",">
+            (#{item.migrateId}, #{item.originTableName}, #{item.targetTableName}, #{item.isCreateTable}, #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </if>
+  </insert>
+
+</mapper>

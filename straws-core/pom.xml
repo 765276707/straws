@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>straws-core</artifactId>
+    <version>1.0.1</version>
+    <name>straws-core</name>
+    <description>core module</description>
+
+    <parent>
+        <groupId>com.gitee.pristine</groupId>
+        <artifactId>straws</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <dependencies>
+        <!-- straws-schedule -->
+        <dependency>
+            <groupId>com.gitee.pristine</groupId>
+            <artifactId>straws-schedule</artifactId>
+        </dependency>
+
+        <!-- straws-scripts -->
+        <dependency>
+            <groupId>com.gitee.pristine</groupId>
+            <artifactId>straws-scripts</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

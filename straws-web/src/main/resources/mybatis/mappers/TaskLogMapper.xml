@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.TaskLogMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.TaskLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="task_id" jdbcType="BIGINT" property="taskId" />
+    <result column="task_name" jdbcType="VARCHAR" property="taskName" />
+    <result column="task_start_time" jdbcType="TIMESTAMP" property="taskStartTime" />
+    <result column="task_finish_time" jdbcType="TIMESTAMP" property="taskFinishTime" />
+    <result column="task_result" jdbcType="INTEGER" property="taskResult" />
+    <result column="transfer_record_count" jdbcType="BIGINT" property="transferRecordCount" />
+    <result column="transfer_record_bytes" jdbcType="VARCHAR" property="transferRecordBytes" />
+    <result column="transfer_average_time" jdbcType="VARCHAR" property="transferAverageTime" />
+    <result column="transfer_average_speed" jdbcType="VARCHAR" property="transferAverageSpeed" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="task_failed_reason" jdbcType="LONGVARCHAR" property="taskFailedReason" />
+  </resultMap>
+
+  <select id="selectLatestTaskLogs" resultMap="BaseResultMap">
+    select * from sys_task_log order by create_time desc limit 5
+  </select>
+
+</mapper>

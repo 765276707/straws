@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.ScriptMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.Script">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="hash_key" jdbcType="VARCHAR" property="hashKey" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_enabled" jdbcType="BIT" property="isEnabled" />
+    <result column="is_checked" jdbcType="BIT" property="isChecked" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+</mapper>

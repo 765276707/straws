@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>straws-scripts</artifactId>
+    <version>1.0.1</version>
+    <name>straws-scripts</name>
+    <description>scripts module</description>
+
+    <parent>
+        <groupId>com.gitee.pristine</groupId>
+        <artifactId>straws</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <dependencies>
+        <!-- straws-common -->
+        <dependency>
+            <groupId>com.gitee.pristine</groupId>
+            <artifactId>straws-common</artifactId>
+        </dependency>
+
+        <!-- groovy -->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.kohsuke</groupId>
+            <artifactId>groovy-sandbox</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

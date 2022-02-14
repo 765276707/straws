@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.DatasourceMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.Datasource">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="driver_class_name" jdbcType="VARCHAR" property="driverClassName" />
+    <result column="driver_version" jdbcType="VARCHAR" property="driverVersion" />
+    <result column="jdbc_url" jdbcType="VARCHAR" property="jdbcUrl" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="BASE_QUERY_SQL">
+    select ds.id, ds.name, ds.status, ds.driver_class_name, ds.driver_version,
+           ds.jdbc_url, ds.username, ds.password, ds.remark, ds.create_time, ds.update_time,
+           ds.type_id,
+           d.item_value as type_name
+    from sys_datasource ds
+    left join sys_dict d on ds.type_id = d.item_code and d.dict_type = 'db_type'
+  </sql>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" /> where ds.id = #{id}
+  </select>
+
+  <select id="selectByName" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" /> where ds.name = #{name}
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" />
+     where
+        ds.name like concat('%', #{condition.searchText}, '%')
+     or
+        d.item_value like concat('%', #{condition.searchText}, '%')
+     or
+        ds.id = #{condition.searchText}
+  </select>
+
+</mapper>

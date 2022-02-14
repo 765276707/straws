@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.MigrateMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.Migrate">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="origin_ds_id" jdbcType="BIGINT" property="originDsId" />
+    <result column="origin_ds_name" jdbcType="VARCHAR" property="originDsName" />
+    <result column="target_ds_id" jdbcType="BIGINT" property="targetDsId" />
+    <result column="target_ds_name" jdbcType="VARCHAR" property="targetDsName" />
+    <result column="transformers" jdbcType="VARCHAR" property="transformers" />
+    <result column="exec_time" jdbcType="TIMESTAMP" property="execTime" />
+    <result column="exec_result" jdbcType="INTEGER" property="execResult" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="BASE_QUERY_SQL">
+    select m.id, m.name, m.exec_time, m.exec_result, m.create_time, m.update_time, m.transformers,
+           ds01.id    as origin_ds_id,
+           ds01.name  as origin_ds_name,
+           ds02.id    as target_ds_id,
+           ds02.name  as target_ds_name
+    from sys_migrate m
+    left join sys_datasource ds01 on m.origin_ds_id = ds01.id
+    left join sys_datasource ds02 on m.target_ds_id = ds02.id
+  </sql>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" /> where m.id = #{id}
+  </select>
+
+  <select id="selectByName" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" /> where m.name = #{name}
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" /> where m.name like concat('%', #{condition.searchText}, '%')
+  </select>
+
+</mapper>

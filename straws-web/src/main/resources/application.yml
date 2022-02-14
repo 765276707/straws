@@ -1,0 +1,35 @@
+# 服务器参数
+server:
+  port: 9000
+  servlet:
+    context-path: /straws
+
+# 应用参数
+spring:
+  application:
+    name: straws-web
+  banner:
+    location: banner/banner.txt
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/straws?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: xzb
+    password: xzb19930617
+
+
+# mybatis basic conf
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations:
+    - classpath:mybatis/mappers/*.xml
+  type-aliases-package: 'com.gitee.pristine.domain.entity'
+
+# pagehelper basic conf
+pagehelper:
+  reasonable: true
+  support-methods-arguments: true
+  helper-dialect: mysql
+  params: count=countSql

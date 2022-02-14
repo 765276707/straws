@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gitee.pristine.web.mapper.TaskMapper">
+  <resultMap id="BaseResultMap" type="com.gitee.pristine.domain.entity.Task">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="origin_ds_id" jdbcType="BIGINT" property="originDsId" />
+    <result column="origin_ds_name" jdbcType="VARCHAR" property="originDsName" />
+    <result column="target_ds_id" jdbcType="BIGINT" property="targetDsId" />
+    <result column="target_ds_name" jdbcType="VARCHAR" property="targetDsName" />
+    <result column="origin_table_name" jdbcType="VARCHAR" property="originTableName" />
+    <result column="target_table_name" jdbcType="VARCHAR" property="targetTableName" />
+    <result column="sync_mode" jdbcType="INTEGER" property="syncMode" />
+    <result column="split_pk" jdbcType="VARCHAR" property="splitPk" />
+    <result column="split_pk_type" jdbcType="INTEGER" property="splitPkType" />
+    <result column="last_min_split_pk" jdbcType="BIGINT" property="lastMinSplitPk" />
+    <result column="last_max_split_pk" jdbcType="BIGINT" property="lastMaxSplitPk" />
+    <result column="time_cron" jdbcType="VARCHAR" property="timeCron" />
+    <result column="workers_per_group" jdbcType="INTEGER" property="workersPerGroup" />
+    <result column="bytes_per_second" jdbcType="INTEGER" property="bytesPerSecond" />
+    <result column="select_fetch_size" jdbcType="INTEGER" property="selectFetchSize" />
+    <result column="insert_batch_size" jdbcType="INTEGER" property="insertBatchSize" />
+    <result column="transforms" jdbcType="VARCHAR" property="transforms" />
+    <result column="run_status" jdbcType="BIT" property="runStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="columns" jdbcType="LONGVARCHAR" property="columns" />
+  </resultMap>
+
+
+  <sql id="BASE_QUERY_SQL">
+    select t.id, t.name, t.group_name, t.origin_table_name, t.target_table_name,
+            t.sync_mode, t.split_pk, t.split_pk_type, t.last_min_split_pk, t.last_max_split_pk,
+            t.time_cron, t.workers_per_group, t.bytes_per_second, t.select_fetch_size, t.insert_batch_size,
+            t.transforms, t.run_status, t.columns, t.create_time, t.update_time,
+            t.origin_ds_id,
+            ds01.name as origin_ds_name,
+            t.target_ds_id,
+            ds02.name as target_ds_name
+    from sys_task t
+    left join sys_datasource ds01 on ds01.id = t.origin_ds_id
+    left join sys_datasource ds02 on ds02.id = t.target_ds_id
+  </sql>
+
+
+  <select id="selectList" resultMap="BaseResultMap">
+    <include refid="BASE_QUERY_SQL" />
+    where
+        t.name like concat('%', #{condition.searchText}, '%')
+    or
+        t.group_name like concat('%', #{condition.searchText}, '%')
+    or
+        t.id = #{condition.searchText}
+  </select>
+
+</mapper>

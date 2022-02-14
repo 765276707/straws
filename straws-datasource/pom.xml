@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>straws-datasource</artifactId>
+    <version>1.0.1</version>
+    <name>straws-datasource</name>
+    <description>datasource module</description>
+
+    <parent>
+        <groupId>com.gitee.pristine</groupId>
+        <artifactId>straws</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <dependencies>
+        <!-- straws-common -->
+        <dependency>
+            <groupId>com.gitee.pristine</groupId>
+            <artifactId>straws-common</artifactId>
+        </dependency>
+
+        <!-- jdbc -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+
+        <!-- mysql -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- sql server -->
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>sqljdbc6</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
