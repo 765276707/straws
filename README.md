@@ -15,6 +15,9 @@ Straws是一款开源的离线数据同步中间件(ETL)，提供Mysql、SqlServ
 - 相同或异构数据库的定时同步，支持全量、增量、CDC三种同步模式，可以针对数据进行转换、过滤等
 - 目前仅适配了Mysql、SqlServer两种关系型数据库，后续会陆续适配更多不同类型的数据库 
 
+#### 系统架构
+![Straws](https://gitee.com/xu_zhibin/straws/raw/master/docs/straws.png)
+
 #### 安装教程
 1.  安装JDK8、安装Maven3.2以上版本
 2.  安装Mysql8，创建名为straws的数据库
